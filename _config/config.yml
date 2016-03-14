@@ -1,0 +1,22 @@
+---
+Name: aviary
+After:
+  - 'framework/*'
+  - 'cms/*'
+---
+Aviary:
+  ClientID: ''
+  LocalProcessing: false
+  UseLocalLibrary: false
+
+Image:
+  extensions:
+    - AviaryImageExtension
+
+HtmlEditorField_Toolbar:
+  extensions:
+    - AviaryHtmlEditorFieldToolbarExtension
+
+CMSFileAddController:
+  extensions:
+    - AviaryCMSFileAddExtension

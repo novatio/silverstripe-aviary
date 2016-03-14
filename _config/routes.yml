@@ -1,0 +1,7 @@
+---
+Name: aviaryroutes
+After: framework/routes#coreroutes
+---
+Director:
+  rules:
+    'AviaryUpload//$Action/$ID/$OtherID': 'AviaryUpload'

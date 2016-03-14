@@ -1,0 +1,36 @@
+{
+  "name": "novatio/silverstripe-aviary",
+  "description": "A SilverStripe Image editor, built with the Aviary Photo Editor.",
+  "type": "silverstripe-module",
+  "homepage": "https://github.com/novatio/silverstripe-aviary",
+  "keywords": [
+    "silverstripe",
+    "assets",
+    "files",
+    "file",
+    "images",
+    "image",
+    "editor",
+    "htmleditor"
+  ],
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "Gabrijel Gavranović",
+      "email": "gabrijel@gavro.nl"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/novatio/silverstripe-aviary/issues"
+  },
+  "require": {
+    "silverstripe/cms": "~3.1",
+    "silverstripe/framework": "~3.1"
+  },
+  "extra": {
+    "installer-name": "aviary",
+    "screenshots": [
+      "https://novatio.github.io/silverstripe-aviary/img/silverstripe-aviary.jpg"
+    ]
+  }
+}
