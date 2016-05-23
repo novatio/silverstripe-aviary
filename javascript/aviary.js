@@ -40,6 +40,8 @@ var featherEditor, initAviary;
                                         $('#thumbnailImage').attr('src', data.thumbnail);
                                     }
                                 }
+
+                                window.aviaryIsDirty = false;
                             }
                         });
 
@@ -72,15 +74,31 @@ var featherEditor, initAviary;
                                 $('#thumbnailImage').attr('src', data.thumbnail);
                             }
                         }
+
+                        window.aviaryIsDirty = false;
                     }
                 });
             },
+            // custom isDirty logic needed, there's a weird avairybug; onSave does not clear "isDirty" state.
+            // (+ can't change internal state of paintWidgetInstance.dirty)
+            onCloseButtonClicked: function(isDirty) {
+                if(!isDirty) {
+                    return isDirty;
+                } else if(typeof window.aviaryIsDirty !== 'undefined') {
+                    return window.aviaryIsDirty;
+                }
+                
+                return isDirty;
+            },
             onError: function(errorObj) {
-                alert(errorObj.message);
+                window.aviaryIsDirty = true;
             },
             onClose: function(isDirty) {
+                delete window.aviaryIsDirty;
             }
         });
+
+        return false;
     };
 
     $.entwine('ss', function($) {
