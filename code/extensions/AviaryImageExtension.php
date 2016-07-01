@@ -8,7 +8,7 @@ class AviaryImageExtension extends DataExtension
             return;
         }
 
-        // load Aviary (js)
+        // load Aviary (js+css)
         Aviary::loadAviary();
 
         // Image pointer

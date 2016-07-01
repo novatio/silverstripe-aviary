@@ -18,6 +18,7 @@ class Aviary extends Object
         }
 
         Requirements::javascript(AVIARY_DIR . '/javascript/aviary.js');
+        Requirements::css(AVIARY_DIR . '/css/aviary.css');
     }
 
     protected static function fetchLocalAviaryLibrary()

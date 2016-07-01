@@ -38,6 +38,19 @@ var featherEditor, initAviary;
                                         $('#thumbnailImage', $(iframePointer).contents()).attr('src', data.thumbnail);
                                     } else {
                                         $('#thumbnailImage').attr('src', data.thumbnail);
+                                        
+                                        // update image dimensions if we are editing from within HTMLEditorField.
+                                        $editorImageWidth  = $('.details.ss-uploadfield-item-editform .field.dimensions input[name=Width]');
+                                        $editorImageHeight = $('.details.ss-uploadfield-item-editform .field.dimensions input[name=Height]');
+
+                                        if($editorImageWidth.length) {
+                                            var img = new Image();
+                                            img.onload = function() {
+                                                $editorImageWidth.val(this.width);
+                                                $editorImageHeight.val(this.height);
+                                            };
+                                            img.src = image;
+                                        }
                                     }
                                 }
 
@@ -87,7 +100,7 @@ var featherEditor, initAviary;
                 } else if(typeof window.aviaryIsDirty !== 'undefined') {
                     return window.aviaryIsDirty;
                 }
-                
+
                 return isDirty;
             },
             onError: function(errorObj) {
