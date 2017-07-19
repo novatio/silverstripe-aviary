@@ -9,7 +9,8 @@
 var featherEditor, initAviary;
 
 (function($) {
-    initAviary = function(apiKey, localProcessing, iframePointer) {
+    initAviary = function(apiKey, localProcessing, iframePointer, baseHref) {
+        baseHref = baseHref || '/';
         // TODO: add tools-option to config.yml (if people want to slim it down), use in this call.
         featherEditor = new Aviary.Feather({
             apiKey: apiKey,
@@ -24,7 +25,7 @@ var featherEditor, initAviary;
                     featherEditor.getImageData(function (image) {
                         $.ajax({
                             type: "POST",
-                            url: '/AviaryUpload/localupdate',
+                            url: baseHref + 'AviaryUpload/localupdate',
                             data: {
                                 imageData: image,
                                 imageID: imageID.replace('aviary_image_', '')
@@ -34,7 +35,7 @@ var featherEditor, initAviary;
                             success: function (data, textStatus, jqXHR) {
                                 if (typeof data.thumbnail !== 'undefined') {
                                     // iFrame hack
-                                    if (typeof iframePointer !== 'undefined') {
+                                    if (typeof iframePointer !== 'undefined' && iframePointer !== null) {
                                         $('#thumbnailImage', $(iframePointer).contents()).attr('src', data.thumbnail);
                                     } else {
                                         $('#thumbnailImage').attr('src', data.thumbnail);
@@ -71,7 +72,7 @@ var featherEditor, initAviary;
 
                 $.ajax({
                     type: "POST",
-                    url: '/AviaryUpload/update',
+                    url: baseHref + 'AviaryUpload/update',
                     data: {
                         url: newURL,
                         imageID: imageID.replace('aviary_image_', '')
@@ -126,11 +127,13 @@ var featherEditor, initAviary;
 
                     var imageID = $(document).find('.aviary_image').attr('id').replace('aviary_image_', '');
                     var iframePointer = "li[data-fileid='"+imageID+"'] iframe";
+                    var baseHref = $(document).find("base").attr('href'); // fix for cms in subfolder
 
                     // add iframePointer to aviary, for pingback (save: thumb update)
-                    window.top.initAviary($(this).data('apikey'), $(this).data('localprocessing'), iframePointer);
+                    window.top.initAviary($(this).data('apikey'), $(this).data('localprocessing'), iframePointer, baseHref);
                 } else {
-                    initAviary($(this).data('apikey'), $(this).data('localprocessing'));
+                    var baseHref = $("base").attr('href'); // fix for cms in subfolder
+                    initAviary($(this).data('apikey'), $(this).data('localprocessing'), null, baseHref);
                 }
             },
 

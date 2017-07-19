@@ -33,9 +33,9 @@ class AviaryUpload extends Controller
 
                 if($this->request->isAjax()) {
                     $this->request->addHeader('Content-type', 'application/json');
-                    return json_encode([
+                    return json_encode(array(
                         'thumbnail' => $thumbnail
-                    ]);
+                    ));
                 }
 
                 return $thumbnail;
@@ -75,9 +75,9 @@ class AviaryUpload extends Controller
 
                 if($this->request->isAjax()) {
                     $this->request->addHeader('Content-type', 'application/json');
-                    return json_encode([
+                    return json_encode(array(
                         'thumbnail' => $thumbnail
-                    ]);
+                    ));
                 }
 
                 return $thumbnail;
