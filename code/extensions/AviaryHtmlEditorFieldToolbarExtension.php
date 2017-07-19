@@ -15,7 +15,7 @@ class AviaryHtmlEditorFieldToolbarExtension extends DataExtension
         // Image pointer
         $aviaryImage = LiteralField::create(
             'AviaryImage',
-            '<img class="aviary_image" id="aviary_image_' . $file->ID . '" src="/' . $url . '" style="display: none;" />'
+            '<img class="aviary_image" id="aviary_image_' . $file->ID . '" src="' . $url . '" style="display: none;" />'
         );
 
         // create edit button
